@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
@@ -8,8 +8,18 @@ import Card from './Components/Card'
 
 
 function App() {
-  // const [count, setCount] = useState(0)
-
+  const [count, setCount] = useState(0)
+  const [color, setcolor] = useState(0);
+  useEffect(() => {
+    alert("Hi !!! Just need a check of start page")
+  }, []);
+  useEffect(() => {
+    setcolor(color + 1);
+    alert(`Change the color : ${color}`)
+  }, [count]);
+  const HandleUpdateCount = () =>{
+    setCount(count+1);
+  }
   return (
     <>
       <Navbar />
@@ -19,6 +29,8 @@ function App() {
         <Card title = "card 3" description = "card 4 desc" />
         <Card title = "card 4" description = "card 5 desc" />
       </div>
+      <p id="updateCount">{count}</p>
+      <button className="btn btn-primary" onClick={HandleUpdateCount}>Count</button>
       <Footer />
     </>
   )
