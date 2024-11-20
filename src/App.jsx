@@ -13,16 +13,29 @@ function App() {
   useEffect(() => {
     alert("Hi !!! Just need a check of start page")
   }, []);
+
   useEffect(() => {
-    setcolor(color + 1);
     alert(`Change the color : ${color}`)
+    setcolor(color + 1);
   }, [count]);
-  const HandleUpdateCount = () =>{
+
+  useEffect(() => {
+    alert("I am running because the color changed")
+  }, [color]);
+
+  useEffect(() => {
+    alert("This is the first time rendering in App.jsx. Welcome to my page");
+    
+    return () =>{
+      alert("The Component is unmounted");
+    }
+  }, []);
+  const HandleUpdateCount = () =>{ 
     setCount(count+1);
   }
   return (
     <>
-      <Navbar />
+      <Navbar color = {"Blue Navy"+color}/>
       <div className="cards">
         <Card title = "card 1" description = "card 2 desc" />
         <Card title = "card 2" description = "card 3 desc" />
