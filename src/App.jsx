@@ -22,6 +22,13 @@ function App() {
   const HandleUpdateCount = () =>{ 
     setCount(count+1);
   }
+  useEffect(() => {
+    alert("This is the first time rendering in App.jsx. Welcome to my page")
+
+    return () => {
+      alert("The Component is unmounted")
+    }
+  }, []);
   return (
     <>
       <Navbar count = {count} color = {"Blue Navy"+color}/>
