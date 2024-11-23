@@ -10,7 +10,9 @@ import Card from './Components/Card'
 function App() {
   const [count, setCount] = useState(0)
   const [color, setcolor] = useState(0);
-  
+  useEffect(() => {
+    console.log("The component is rerendering...");
+  }, []);
   useEffect(() => {
     alert("Hi !!! Just need a check of start page");
   }, []);
