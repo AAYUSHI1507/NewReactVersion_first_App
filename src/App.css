@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.boxtodo{
+  border: 1px solid rgb(82, 78, 78);
+  margin: 10px;
+}

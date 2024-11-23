@@ -1,50 +1,64 @@
-import { useEffect, useRef, useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-import Navbar from './Components/Navbar'
-import Footer from './Components/Footer'
-import Card from './Components/Card'
-
+import React,{useState,useEffect, useRef} from 'react'
+import './App.css';
+import './index.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [color, setcolor] = useState(0);
-  useEffect(() => {
-    console.log("The component is rerendering...");
-  }, []);
-  useEffect(() => {
-    alert("Hi !!! Just need a check of start page");
-  }, []);
-  useEffect(() => {
-    alert(`Change the color : ${color}`)
-    setcolor(color + 1);
-  }, [count]);
-
-  const HandleUpdateCount = () =>{ 
-    setCount(count+1);
-  }
-  useEffect(() => {
-    alert("This is the first time rendering in App.jsx. Welcome to my page")
-
-    return () => {
-      alert("The Component is unmounted")
-    }
-  }, []);
-  
-  return (
-    <>
-      <Navbar count = {count} color = {"Blue Navy"+color}/>
-      <div className="cards">
-        <Card title = "card 1" description = "card 2 desc" />
-        <Card title = "card 2" description = "card 3 desc" />
-        <Card title = "card 3" description = "card 4 desc" />
-        <Card title = "card 4" description = "card 5 desc" />
+  //States
+  const [Count, setCount] = useState(0);
+  const [Hidebtn, setHidebtn] = useState(true);
+  const [Todos, setTodos] = useState([
+    {
+      "title": "This is first Todo",
+      "Desc" : "This is the first todo Description"
+    },
+    { 
+      "title": "This is Second Todo",
+      "Desc" : "This is the Second todo Description"
+    },
+    {
+      "title": "This is third Todo",
+      "Desc" : "This is the third todo Description"
+    }]
+  );
+  const Todos1 = ({todos2}) =>{
+    return(
+      <>
+      <div className=' boxtodo border-solid border-2 border-indigo-600'>
+      <h4 className='todo'> {todos2.title}</h4>
+      <p className='todo'>{todos2.Desc}</p>
       </div>
-      <p id="updateCount">{count}</p>
-      <button className="btn btn-primary" onClick={HandleUpdateCount}>Count</button>
-      <Footer />
-    </>
+      </>
+    )
+  }
+  //Functions
+  const HandAddCount = () => {
+    setCount(Count+1);
+    if(Hidebtn == true){
+      btnref.current.style.display = "none";
+      setHidebtn(false);
+    }else{
+      btnref.current.style.display = "block";
+      setHidebtn(true);
+    }
+    }
+    let a = useRef(0);
+    let btnref = useRef();
+
+    useEffect(() => {
+      a.current = a.current+1;
+      console.log(`The component is rerendering... ${a.current}`);
+    });
+  return (
+    <div>
+      <button  type="button" onClick={HandAddCount}>Count  {Count}</button>
+
+      {Todos.map(todos2=>{
+        return <Todos1 key={todos2.title} todos2 = {todos2} />
+      })}
+
+      <button ref={btnref}>Show/Hide  Button</button>
+
+    </div>
   )
 }
 
