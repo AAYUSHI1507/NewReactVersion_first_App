@@ -29,6 +29,7 @@ function App() {
       alert("The Component is unmounted")
     }
   }, []);
+  
   return (
     <>
       <Navbar count = {count} color = {"Blue Navy"+color}/>
